@@ -3,15 +3,15 @@ description: >
 parameters:
   username:
     type: env_var_name
-    default: "NUGET_USERNAME"
+    default: NUGET_USERNAME
     description: "NuGet username"
   password:
     type: env_var_name
-    default: "NUGET_PASSWORD"
+    default: NUGET_PASSWORD
     description: "NuGet password"
   url:
     type: env_var_name
-    default: "NUGET_URL"
+    default: NUGET_URL
     description: "NuGet source URL"
   nuget_name:
     type: string
@@ -22,7 +22,7 @@ steps:
       name: Add NuGet Source
       command: <<include(scripts/dotnet/add_nuget_source.sh)>>
       environment:
-        NUGET_USERNAME: "${<<parameters.username>>}"
-        NUGET_PASSWORD: "${<<parameters.password>>}"
-        NUGET_URL: "${<<parameters.url>>}"
+        NUGET_USERNAME: ${<<parameters.username>>}
+        NUGET_PASSWORD: ${<<parameters.password>>}
+        NUGET_URL: ${<<parameters.url>>}
         NUGET_NAME: <<parameters.nuget_name>>
