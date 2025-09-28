@@ -9,7 +9,7 @@ echo "CIRCLE_BRANCH: $CIRCLE_BRANCH"
 {
     echo "export VERSION_PREFIX=$BASE_VERSION.$PIPELINE_ID"
     echo "export VERSION_SUFFIX=$CIRCLE_BRANCH;"
-    echo "if [ $CIRCLE_BRANCH == "main" ]; then export VERSION_SUFFIX=test; fi"
-    echo "if [ $CIRCLE_BRANCH != "main" ]; then export NUGET_VERSION_SUFFIX=$CIRCLE_BRANCH; fi"
+    echo "if [ $CIRCLE_BRANCH == \"main\" ]; then export VERSION_SUFFIX=test; fi"
+    echo "if [ $CIRCLE_BRANCH != \"main\" ]; then export NUGET_VERSION_SUFFIX=$CIRCLE_BRANCH; fi"
     echo "export FULL_VERSION=$VERSION_PREFIX-$VERSION_SUFFIX;"
-} >> $BASH_ENV
+} >> "$BASH_ENV"
