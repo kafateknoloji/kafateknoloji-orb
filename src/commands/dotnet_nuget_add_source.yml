@@ -21,6 +21,8 @@ steps:
   - run:
       name: Validate Parameters
       command: |
+
+        # RC009 
         echo "Validating parameters..."
         echo "Username Env Var: <<parameters.username>>"
         echo "Password Env Var: <<parameters.password>>"
