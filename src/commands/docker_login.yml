@@ -1,0 +1,18 @@
+description: >
+  This command logs in to a Docker registry using provided credentials.
+parameters:
+  registry:
+    type: string
+    default: docker.io
+  username:
+    type: string
+  token:
+    type: string
+steps:
+  - run:
+      environment:
+        TOKEN: <<parameters.token>>
+        REGISTRY: <<parameters.registry>>
+        USERNAME: <<parameters.username>>
+      name: Login to Docker Registry
+      command: <<include(scripts/docker/login.sh)>>

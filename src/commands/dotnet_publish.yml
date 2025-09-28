@@ -1,0 +1,15 @@
+description: >
+  This command publishes a .NET project located at the specified path for a given environment.
+parameters:
+  project_path:
+    type: string
+    default: "."
+  environment_name:
+    type: string
+steps:
+  - run:
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
+        ENVIRONMENT_NAME: <<parameters.environment_name>>
+      name: Publish Project
+      command: <<include(scripts/dotnet/publish.sh)>>
