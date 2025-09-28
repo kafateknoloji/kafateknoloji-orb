@@ -18,7 +18,6 @@ workflows:
       - orb-tools/review:
           orb_name: kafateknoloji-orb
           filters: *filters
-          exclude: RC009
       - shellcheck/check:
           filters: *filters
       # Triggers the next workflow in the Orb Development Kit.

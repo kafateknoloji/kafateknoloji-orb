@@ -19,20 +19,6 @@ parameters:
     description: "NuGet source name"
 steps:
   - run:
-      name: Validate Parameters
-      command: |
-        echo "Validating parameters..."
-        echo "Username Env Var: <<parameters.username>>"
-        echo "Password Env Var: <<parameters.password>>"
-        echo "URL Env Var: <<parameters.url>>"
-        echo "NuGet Name: <<parameters.nuget_name>>"
-
-        echo "Checking if environment variables are set..."
-        echo "NUGET_USERNAME is set: ${<<parameters.username>>}"
-        echo "NUGET_PASSWORD is set: ${<<parameters.password>>}"
-        echo "NUGET_URL is set: ${<<parameters.url>>}"
-        echo "NUGET_NAME is set: ${<<parameters.nuget_name>>}"
-  - run:
       name: Add NuGet Source
       command: <<include(scripts/dotnet/add_nuget_source.sh)>>
       environment:
