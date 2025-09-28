@@ -1,0 +1,18 @@
+description: >
+  This command pushes a Docker image to a specified Docker registry.
+parameters:
+  registry:
+    type: string
+    default: docker.io
+  namespace:
+    type: string
+  repository_name:
+    type: string
+steps:
+  - run:
+      environment:
+        REGISTRY: <<parameters.registry>>
+        NAMESPACE: <<parameters.namespace>>
+        REPOSITORY_NAME: <<parameters.repository_name>>
+      name: Push Docker Image to Registry
+      command: <<include(scripts/docker/push.sh)>>

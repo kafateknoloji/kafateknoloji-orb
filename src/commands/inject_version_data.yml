@@ -1,0 +1,15 @@
+description: >
+  This command injects version data into environment variables based on the provided base version and pipeline ID.
+parameters:
+  base_version:
+    type: string
+  pipeline_id:
+    type: integer
+steps:
+  - run:
+      environment:
+        BASE_VERSION: <<parameters.base_version>>
+        PIPELINE_ID: <<parameters.pipeline_id>>
+      name: Setting up variables
+      when: always
+      command: <<include(scripts/set_version_data.sh)>>

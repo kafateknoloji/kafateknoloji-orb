@@ -1,0 +1,20 @@
+description: >
+  This command builds a .NET project located at the specified path for a given environment.
+parameters:
+  project_path:
+    type: string
+    default: "."
+  environment_name:
+    type: string
+steps:
+  - run:
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
+      name: Restore NuGet Packages
+      command: <<include(scripts/dotnet/restore.sh)>>
+  - run:
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
+        ENVIRONMENT_NAME: <<parameters.environment_name>>
+      name: Build Project
+      command: <<include(scripts/dotnet/build.sh)>>
