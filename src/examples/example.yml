@@ -6,10 +6,10 @@ description: >
 usage:
   version: 2.1
   orbs:
-    kafateknoloji: kafateknoloji/kafateknoloji-orb@1
+    kafateknoloji-orb: kafateknoloji/kafateknoloji-orb@1.0.0
   workflows:
     inject-version-data:
       jobs:
-        - kafateknoloji/inject-version-data:
+        - kafateknoloji-orb/inject-version-data:
             base_version: "1.0.0"
             pipeline_id: <<pipeline.number>> # Using a built-in CircleCI variable
