@@ -6,7 +6,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    <orb-name>: kafateknoloji/kafateknoloji-orb@1.0.0
+    <orb-name>: kafateknoloji/kafateknoloji-orb@1
   workflows:
     use-my-orb:
       jobs:
