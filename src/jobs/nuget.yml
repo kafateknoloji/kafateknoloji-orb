@@ -27,8 +27,8 @@ steps:
       project_path: <<parameters.project_path>>
       output_directory: "/app/nupkgs"
   - dotnet_nuget_add_source:
-      username: $NUGET_USERNAME
-      password: $NUGET_PASSWORD
-      url: $NUGET_URL
+      username: NUGET_USERNAME
+      password: NUGET_PASSWORD
+      url: NUGET_URL
   - dotnet_nuget_push:
       source_folder: "/app/nupkgs/"
