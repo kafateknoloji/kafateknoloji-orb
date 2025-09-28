@@ -31,10 +31,6 @@ jobs:
       - kafateknoloji-orb/inject_version_data:
           base_version: '1.0'
           pipeline_id: <<pipeline.number>> # Using a built-in CircleCI variable
-      - kafateknoloji-orb/nuget:
-          username: TEST_NUGET_USERNAME
-          password: TEST_NUGET_PASSWORD
-          url: TEST_NUGET_URL
 workflows:
   test-deploy:
     jobs:
@@ -42,6 +38,11 @@ workflows:
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - command-test:
           filters: *filters
+      - kafateknoloji-orb/nuget:
+          filters: *filters
+          username: TEST_NUGET_USERNAME
+          password: TEST_NUGET_PASSWORD
+          url: TEST_NUGET_URL
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
