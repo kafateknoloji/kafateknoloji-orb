@@ -21,14 +21,12 @@ steps:
   - run:
       name: Validate Parameters
       command: |
-
-        # RC009 
         echo "Validating parameters..."
         echo "Username Env Var: <<parameters.username>>"
         echo "Password Env Var: <<parameters.password>>"
         echo "URL Env Var: <<parameters.url>>"
         echo "NuGet Name: <<parameters.nuget_name>>"
-        
+
         echo "Checking if environment variables are set..."
         echo "NUGET_USERNAME is set: ${<<parameters.username>>}"
         echo "NUGET_PASSWORD is set: ${<<parameters.password>>}"
