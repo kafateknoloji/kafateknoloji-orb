@@ -28,7 +28,9 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      # - kafateknoloji-orb/greet
+      - kafateknoloji-orb/inject_version_data:
+          base_version: "1.0.0"
+          pipeline_id: <<pipeline.number>> # Using a built-in CircleCI variable
 workflows:
   test-deploy:
     jobs:

@@ -1,0 +1,11 @@
+description: >
+  This command pushes NuGet packages located in the specified source folder to a NuGet server.
+parameters:
+  source_folder:
+    type: string
+    default: "/app/nupkgs/"
+steps:
+  - run:
+      name: Push to NuGet
+      command: >-
+        dotnet nuget push <<parameters.source_folder>> -k $NUGET_PASSWORD --skip-duplicate -s Main

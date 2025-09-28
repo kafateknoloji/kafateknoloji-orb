@@ -1,0 +1,16 @@
+description: >
+  Build and push NuGet packages to a NuGet server.
+usage:
+  version: 2.1
+  orbs:
+    kafateknoloji-orb: kafateknoloji/kafateknoloji-orb@1.0.1
+  workflows:
+    package-and-push-nuget:
+      jobs:
+        - kafateknoloji-orb/nuget:
+            base_version: '1.0'
+            builder_image_tag: '9.0'
+            namespace: <PROJECT_NAMESPACE>
+            pipeline_id: <<pipeline.number>>
+            context:
+              - GLOBAL # Context where NUGET_USERNAME and NUGET_PASSWORD are stored

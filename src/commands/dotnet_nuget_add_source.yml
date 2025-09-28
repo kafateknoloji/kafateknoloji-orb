@@ -12,7 +12,7 @@ parameters:
     description: "NuGet source URL"
   nuget_name:
     type: string
-    default: "PrivateNuGet"
+    default: "Main"
     description: "NuGet source name"
 steps:
   - run:

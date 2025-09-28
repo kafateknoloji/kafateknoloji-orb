@@ -1,0 +1,23 @@
+
+description: >
+  This command packs NuGet packages for a specified .NET project namespace.
+parameters:
+  namespace:
+    type: string
+  output_directory:
+    type: string
+    default: "/app/nupkgs"
+steps:
+  - run:
+      name: Restore NuGet Packages
+      command: |
+        dotnet restore <<parameters.namespace>>
+  - run:
+      name: Build Projects
+      command: |
+        echo "Building <<parameters.namespace>> project."
+        dotnet build <<parameters.namespace>> -p:TreatWarningsAsErrors=True -p:EnforceCodeStyleInBuild=True --no-restore
+  - run:
+      name: Packing Nugets
+      command: |
+        dotnet pack <<parameters.namespace>> -c Release -o <<parameters.output_directory>> -p:VersionSuffix=$NUGET_VERSION_SUFFIX -p:VersionPrefix=$VERSION_PREFIX -p:SymbolPackageFormat=snupkg -p:IncludeSymbols=True -p:DebugType=portable

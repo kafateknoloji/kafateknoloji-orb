@@ -1,0 +1,34 @@
+description: >
+  Build and push NuGet packages to a NuGet server.
+
+executor:
+  name: dotnet
+  tag: <<parameters.builder_image_tag>>
+
+parameters:
+  base_version:
+    description: Base version
+    type: string
+  builder_image_tag:
+    default: '3.1'
+    description: Tag of builder image
+    type: string
+  namespace:
+    description: Namespace for which to build NuGets
+    type: string
+  pipeline_id:
+    type: integer
+steps:
+  - checkout
+  - inject_version_data:
+      base_version: <<parameters.base_version>>
+      pipeline_id: <<parameters.pipeline_id>>
+  - dotnet_nuget_pack:
+      namespace: <<parameters.namespace>>
+      output_directory: "/app/nupkgs"
+  - dotnet_nuget_add_source:
+      username: $NUGET_USERNAME
+      password: $NUGET_PASSWORD
+      url: $NUGET_URL
+  - dotnet_nuget_push:
+      source_folder: "/app/nupkgs/"
