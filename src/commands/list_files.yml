@@ -1,0 +1,11 @@
+description: >
+  This command lists all files in the specified directory.
+parameters:
+  directory:
+    type: string
+steps:
+  - run:
+      name: List Files in Directory
+      command: <<include(scripts/list_files.sh)>>
+      environment:
+        DIRECTORY: <<parameters.directory>>

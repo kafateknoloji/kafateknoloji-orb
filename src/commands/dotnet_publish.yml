@@ -8,8 +8,8 @@ parameters:
     type: string
 steps:
   - run:
+      name: Publish Project
+      command: <<include(scripts/dotnet/publish.sh)>>
       environment:
         PROJECT_PATH: <<parameters.project_path>>
         ENVIRONMENT_NAME: <<parameters.environment_name>>
-      name: Publish Project
-      command: <<include(scripts/dotnet/publish.sh)>>

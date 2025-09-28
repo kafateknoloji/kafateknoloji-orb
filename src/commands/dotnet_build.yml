@@ -8,13 +8,13 @@ parameters:
     type: string
 steps:
   - run:
-      environment:
-        PROJECT_PATH: <<parameters.project_path>>
       name: Restore NuGet Packages
       command: <<include(scripts/dotnet/restore.sh)>>
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
   - run:
+      name: Build Project
+      command: <<include(scripts/dotnet/build.sh)>>
       environment:
         PROJECT_PATH: <<parameters.project_path>>
         ENVIRONMENT_NAME: <<parameters.environment_name>>
-      name: Build Project
-      command: <<include(scripts/dotnet/build.sh)>>

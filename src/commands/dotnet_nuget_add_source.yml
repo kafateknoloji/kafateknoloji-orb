@@ -16,10 +16,10 @@ parameters:
     description: "NuGet source name"
 steps:
   - run:
+      name: Add NuGet Source
+      command: <<include(scripts/dotnet/add_nuget_source.sh)>>
       environment:
         NUGET_USERNAME: <<parameters.username>>
         NUGET_PASSWORD: <<parameters.password>>
         NUGET_URL: <<parameters.url>>
         NUGET_NAME: <<parameters.nuget_name>>
-      name: Add NuGet Source
-      command: <<include(scripts/dotnet/add_nuget_source.sh)>>

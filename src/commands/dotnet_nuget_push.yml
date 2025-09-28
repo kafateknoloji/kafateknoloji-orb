@@ -7,5 +7,6 @@ parameters:
 steps:
   - run:
       name: Push to NuGet
-      command: >-
-        dotnet nuget push <<parameters.source_folder>> -k $NUGET_PASSWORD --skip-duplicate -s Main
+      command: <<include(scripts/dotnet/nuget_push.sh)>>
+      environment:
+        SOURCE_FOLDER: <<parameters.source_folder>>

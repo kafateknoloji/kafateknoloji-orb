@@ -13,8 +13,8 @@ parameters:
     default: '3.1'
     description: Tag of builder image
     type: string
-  namespace:
-    description: Namespace for which to build NuGets
+  project_path:
+    description: Project path for which to build NuGets
     type: string
   pipeline_id:
     type: integer
@@ -24,7 +24,7 @@ steps:
       base_version: <<parameters.base_version>>
       pipeline_id: <<parameters.pipeline_id>>
   - dotnet_nuget_pack:
-      namespace: <<parameters.namespace>>
+      project_path: <<parameters.project_path>>
       output_directory: "/app/nupkgs"
   - dotnet_nuget_add_source:
       username: $NUGET_USERNAME

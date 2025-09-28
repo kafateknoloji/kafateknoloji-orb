@@ -1,7 +1,7 @@
 description: >
   This command packs NuGet packages for a specified .NET project namespace.
 parameters:
-  namespace:
+  project_path:
     type: string
   output_directory:
     type: string
@@ -9,21 +9,19 @@ parameters:
 steps:
   - run:
       name: Restore NuGet Packages
-      command: |
-        dotnet restore <<parameters.namespace>>
+      command: <<include(scripts/dotnet/restore.sh)>>
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
   - run:
-      name: Build Projects
-      command: |
-        echo "Building <<parameters.namespace>> project."
-        dotnet build <<parameters.namespace>> -p:TreatWarningsAsErrors=True -p:EnforceCodeStyleInBuild=True --no-restore
+      name: Build Project for NuGet
+      command: <<include(scripts/dotnet/nuget_build.sh)>>
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
   - run:
-      name: Packing Nugets
-      command: |
-        dotnet pack <<parameters.namespace>> 
-          -c Release 
-          -o <<parameters.output_directory>> 
-          -p:VersionSuffix=$NUGET_VERSION_SUFFIX 
-          -p:VersionPrefix=$VERSION_PREFIX 
-          -p:SymbolPackageFormat=snupkg 
-          -p:IncludeSymbols=True 
-          -p:DebugType=portable
+      name: Pack Project for NuGet
+      command: <<include(scripts/dotnet/nuget_pack.sh)>>
+      environment:
+        PROJECT_PATH: <<parameters.project_path>>
+        OUTPUT_DIRECTORY: <<parameters.output_directory>>
+  - list_files:
+      directory: <<parameters.output_directory>>

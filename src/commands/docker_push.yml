@@ -10,9 +10,9 @@ parameters:
     type: string
 steps:
   - run:
+      name: Push Docker Image to Registry
+      command: <<include(scripts/docker/push.sh)>>
       environment:
         REGISTRY: <<parameters.registry>>
         NAMESPACE: <<parameters.namespace>>
         REPOSITORY_NAME: <<parameters.repository_name>>
-      name: Push Docker Image to Registry
-      command: <<include(scripts/docker/push.sh)>>

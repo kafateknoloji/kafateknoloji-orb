@@ -13,10 +13,10 @@ parameters:
     type: string
 steps:
   - run:
+      name: Build Docker Image
+      command: <<include(scripts/docker/build.sh)>>
       environment:
         BASE_PATH: <<parameters.base_path>>
         REGISTRY: <<parameters.registry>>
         NAMESPACE: <<parameters.namespace>>
         REPOSITORY_NAME: <<parameters.repository_name>>
-      name: Build Docker Image
-      command: <<include(scripts/docker/build.sh)>>

@@ -7,9 +7,9 @@ parameters:
     type: integer
 steps:
   - run:
-      environment:
-        BASE_VERSION: <<parameters.base_version>>
-        PIPELINE_ID: <<parameters.pipeline_id>>
       name: Setting up variables
       when: always
       command: <<include(scripts/set_version_data.sh)>>
+      environment:
+        BASE_VERSION: <<parameters.base_version>>
+        PIPELINE_ID: <<parameters.pipeline_id>>
