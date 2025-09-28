@@ -1,4 +1,3 @@
-
 description: >
   This command packs NuGet packages for a specified .NET project namespace.
 parameters:
@@ -20,4 +19,11 @@ steps:
   - run:
       name: Packing Nugets
       command: |
-        dotnet pack <<parameters.namespace>> -c Release -o <<parameters.output_directory>> -p:VersionSuffix=$NUGET_VERSION_SUFFIX -p:VersionPrefix=$VERSION_PREFIX -p:SymbolPackageFormat=snupkg -p:IncludeSymbols=True -p:DebugType=portable
+        dotnet pack <<parameters.namespace>> 
+          -c Release 
+          -o <<parameters.output_directory>> 
+          -p:VersionSuffix=$NUGET_VERSION_SUFFIX 
+          -p:VersionPrefix=$VERSION_PREFIX 
+          -p:SymbolPackageFormat=snupkg 
+          -p:IncludeSymbols=True 
+          -p:DebugType=portable
