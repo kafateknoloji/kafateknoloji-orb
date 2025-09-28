@@ -10,7 +10,7 @@ usage:
         - kafateknoloji-orb/nuget:
             base_version: '1.0'
             builder_image_tag: '9.0'
-            namespace: <PROJECT_NAMESPACE>
+            project_path: <PROJECT_PROJECT_PATH>
             pipeline_id: <<pipeline.number>>
             context:
               - GLOBAL # Context where NUGET_USERNAME and NUGET_PASSWORD are stored
