@@ -6,7 +6,7 @@ docker:
   - image: 'mcr.microsoft.com/dotnet/sdk:<<parameters.tag>>'
 parameters:
   tag:
-    default: 9.0
+    default: "9.0"
     description: >
       Pick a specific mcr.microsoft.com/dotnet/sdk image variant:
       https://hub.docker.com/r/microsoft/dotnet-sdk

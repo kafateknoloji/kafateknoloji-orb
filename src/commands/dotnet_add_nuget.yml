@@ -10,7 +10,7 @@ parameters:
   url:
     type: string
     description: "NuGet source URL"
-  name:
+  nuget_name:
     type: string
     default: "PrivateNuGet"
     description: "NuGet source name"
@@ -20,6 +20,6 @@ steps:
         NUGET_USERNAME: <<parameters.username>>
         NUGET_PASSWORD: <<parameters.password>>
         NUGET_URL: <<parameters.url>>
-        NUGET_NAME: <<parameters.name>>
+        NUGET_NAME: <<parameters.nuget_name>>
       name: Add NuGet Source
       command: <<include(scripts/dotnet/add_nuget_source.sh)>>
