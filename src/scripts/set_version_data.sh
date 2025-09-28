@@ -14,6 +14,8 @@ echo "CIRCLE_BRANCH: $CIRCLE_BRANCH"
     echo "export FULL_VERSION=\$VERSION_PREFIX-\$VERSION_SUFFIX"
 } >> "$BASH_ENV"
 
+source "$BASH_ENV"
+
 echo "Version variables Set"
 echo "VERSION_PREFIX: $VERSION_PREFIX"
 echo "VERSION_SUFFIX: $VERSION_SUFFIX"
