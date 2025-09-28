@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "--- Current Version Data ---"
+echo "VERSION_PREFIX: $VERSION_PREFIX"
+echo "VERSION_SUFFIX: $VERSION_SUFFIX"
+echo "NUGET_VERSION_SUFFIX: $NUGET_VERSION_SUFFIX"
+echo "FULL_VERSION: $FULL_VERSION"

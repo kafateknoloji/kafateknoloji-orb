@@ -13,3 +13,6 @@ steps:
       environment:
         BASE_VERSION: <<parameters.base_version>>
         PIPELINE_ID: <<parameters.pipeline_id>>
+  - run:
+      name: Show version data
+      command: <<include(scripts/show_version_data.sh)>>
