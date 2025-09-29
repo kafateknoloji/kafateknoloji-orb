@@ -1,6 +1,9 @@
 description: >
   This command pushes NuGet packages located in the specified source folder to a NuGet server.
 parameters:
+  nuget_name:
+    type: string
+    description: "NuGet source name"
   source_folder:
     type: string
     default: "/app/nupkgs/"
@@ -9,4 +12,5 @@ steps:
       name: Push to NuGet
       command: <<include(scripts/dotnet/nuget_push.sh)>>
       environment:
+        NUGET_NAME: <<parameters.nuget_name>>
         SOURCE_FOLDER: <<parameters.source_folder>>
