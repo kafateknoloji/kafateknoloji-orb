@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    kafateknoloji-orb: kafateknoloji/kafateknoloji-orb@1.0.1
+    kafateknoloji-orb: kafateknoloji/kafateknoloji-orb@1.0.7
   workflows:
     package-and-push-nuget:
       jobs:
