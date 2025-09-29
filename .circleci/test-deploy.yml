@@ -32,10 +32,6 @@ jobs:
       - kafateknoloji-orb/inject_version_data:
           base_version: '1.0'
           pipeline_id: <<pipeline.number>> # Using a built-in CircleCI variable
-      - kafateknoloji-orb/dotnet_nuget_add_source:
-          username: TEST_NUGET_USERNAME
-          password: TEST_NUGET_PASSWORD
-          url: TEST_NUGET_URL
 workflows:
   test-deploy:
     jobs:
