@@ -1,23 +1,29 @@
 description: >
   This command adds a private NuGet source to the NuGet configuration.
 parameters:
-  nuget_name:
-    type: string
-    description: "NuGet source name"
   nuget_url:
     type: string
+    description: "NuGet source URL"
+  nuget_username:
+    type: string
+    description: "NuGet source username"
+  nuget_password:
+    type: string
+    description: "NuGet source password"
+  nuget_name:
+    type: string
+    default: "Main"
+    description: "NuGet source name"
   pre_steps:
     type: steps
     default: []
     description: "Steps to run before adding the NuGet source"
 steps:
-  - <<parameters.pre_steps>>
-  - run:
-      name: Validate environment variables
-      command: <<include(scripts/dotnet/nuget_validate_parameters.sh)>>
   - run:
       name: Add NuGet Source
       command: <<include(scripts/dotnet/add_nuget_source.sh)>>
       environment:
-        NUGET_NAME: <<parameters.nuget_name>>
-        NUGET_URL_TEST: <<parameters.nuget_url>>
+        NUGET_SOURCE_URL: <<parameters.nuget_url>>
+        NUGET_SOURCE_USERNAME: <<parameters.nuget_username>>
+        NUGET_SOURCE_PASSWORD: <<parameters.nuget_password>>
+        NUGET_SOURCE_NAME: <<parameters.nuget_name>>

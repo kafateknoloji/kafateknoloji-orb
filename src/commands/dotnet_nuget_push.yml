@@ -3,6 +3,7 @@ description: >
 parameters:
   nuget_name:
     type: string
+    default: "Main"
     description: "NuGet source name"
   source_folder:
     type: string
