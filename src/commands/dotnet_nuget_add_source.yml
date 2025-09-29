@@ -6,12 +6,12 @@ parameters:
     description: "NuGet source name"
   nuget_url:
     type: string
-  pre-steps:
+  pre_steps:
     type: steps
     default: []
     description: "Steps to run before adding the NuGet source"
 steps:
-  - <<parameters.pre-steps>>
+  - <<parameters.pre_steps>>
   - run:
       name: Validate environment variables
       command: <<include(scripts/dotnet/nuget_validate_parameters.sh)>>

@@ -29,7 +29,7 @@ steps:
   - dotnet_nuget_add_source:
       nuget_name: "Main"
       nuget_url: "$NUGET_URL"
-      pre-steps:
+      pre_steps:
         - run:
             name: Set nuget environment variables
             command: |
