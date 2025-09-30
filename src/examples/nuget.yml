@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    kafateknoloji-orb: kafateknoloji/kafateknoloji-orb@1.0.7
+    kafateknoloji-orb: kafateknoloji/kafateknoloji-orb@1.0.8
   workflows:
     package-and-push-nuget:
       jobs:
@@ -11,6 +11,6 @@ usage:
             base_version: '1.0'
             builder_image_tag: '9.0'
             project_path: <PROJECT_PROJECT_PATH>
-            pipeline_id: <<pipeline.number>>
+            pipeline_number: <<pipeline.number>>
             context:
               - GLOBAL # Context where NUGET_USERNAME and NUGET_PASSWORD are stored

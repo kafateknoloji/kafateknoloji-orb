@@ -3,16 +3,20 @@ description: >
 parameters:
   base_version:
     type: string
-  pipeline_id:
+  pipeline_number:
     type: integer
 steps:
+  - run:
+      name: Debug pipeline number
+      command: |
+        echo "Debug Pipeline Number: <<pipeline.number>>"
   - run:
       name: Setting up variables
       when: always
       command: <<include(scripts/set_version_data.sh)>>
       environment:
         BASE_VERSION: <<parameters.base_version>>
-        PIPELINE_ID: <<parameters.pipeline_id>>
+        PIPELINE_NUMBER: <<parameters.pipeline_number>>
   - run:
       name: Show version data
       command: <<include(scripts/show_version_data.sh)>>

@@ -10,19 +10,19 @@ parameters:
     description: Base version
     type: string
   builder_image_tag:
-    default: '3.1'
+    default: "9.0"
     description: Tag of builder image
     type: string
   project_path:
     description: Project path for which to build NuGets
     type: string
-  pipeline_id:
+  pipeline_number:
     type: integer
 steps:
   - checkout
   - inject_version_data:
       base_version: <<parameters.base_version>>
-      pipeline_id: <<parameters.pipeline_id>>
+      pipeline_number: <<parameters.pipeline_number>>
   - dotnet_nuget_pack:
       project_path: <<parameters.project_path>>
       output_directory: "/app/nupkgs"
