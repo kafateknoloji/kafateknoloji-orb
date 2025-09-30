@@ -7,10 +7,6 @@ parameters:
     type: integer
 steps:
   - run:
-      name: Debug pipeline number
-      command: |
-        echo "Debug Pipeline Number: $CIRCLE_PIPELINE_NUMBER"
-  - run:
       name: Setting up variables
       when: always
       command: <<include(scripts/set_version_data.sh)>>
