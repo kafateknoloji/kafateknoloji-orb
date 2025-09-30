@@ -9,7 +9,7 @@ steps:
   - run:
       name: Debug pipeline number
       command: |
-        echo "Debug Pipeline Number: <<pipeline.number>>"
+        echo "Debug Pipeline Number: $CIRCLE_PIPELINE_NUMBER"
   - run:
       name: Setting up variables
       when: always
