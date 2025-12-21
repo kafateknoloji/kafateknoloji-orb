@@ -10,7 +10,7 @@ parameters:
     description: Base version
     type: string
   builder_image_tag:
-    default: "9.0"
+    default: "10.0"
     description: Tag of builder image
     type: string
   project_path:

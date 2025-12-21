@@ -9,7 +9,7 @@ usage:
       jobs:
         - kafateknoloji-orb/nuget:
             base_version: '1.0'
-            builder_image_tag: '9.0'
+            builder_image_tag: '10.0'
             project_path: <PROJECT_PROJECT_PATH>
             pipeline_number: <<pipeline.number>>
             context:
