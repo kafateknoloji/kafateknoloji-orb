@@ -16,23 +16,20 @@ if [ "$PACKAGE_MANAGER" == "yarn" ]; then
     else
         echo "yarn.lock not found, but PACKAGE_MANAGER is set to yarn."
     fi
-fi
-if [ "$PACKAGE_MANAGER" == "npm" ]; then
+elif [ "$PACKAGE_MANAGER" == "npm" ]; then
     echo "Using npm as the package manager."
     if [ -f package-lock.json ]; then
         npm ci
     else
         echo "package-lock.json not found, but PACKAGE_MANAGER is set to npm."
     fi
-fi
-if [ "$PACKAGE_MANAGER" == "pnpm" ]; then
+elif [ "$PACKAGE_MANAGER" == "pnpm" ]; then
     echo "Using pnpm as the package manager."
     if [ -f pnpm-lock.yaml ]; then
         corepack enable pnpm && pnpm i --frozen-lockfile
     else
         echo "pnpm-lock.yaml not found, but PACKAGE_MANAGER is set to pnpm."
     fi
-fi
 else
     echo "Unsupported PACKAGE_MANAGER: $PACKAGE_MANAGER"
     exit 1
