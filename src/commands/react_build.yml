@@ -1,0 +1,16 @@
+description: >
+  This command builds a React project using the specified package manager.
+parameters:
+  package_manager:
+    type: string
+steps:
+  - run:
+      name: Install React Dependencies
+      command: <<include(scripts/react/restore.sh)>>
+      environment:
+        PACKAGE_MANAGER: <<parameters.package_manager>>
+  - run:
+      name: Build React Project
+      command: <<include(scripts/react/build.sh)>>
+      environment:
+        PACKAGE_MANAGER: <<parameters.package_manager>>
