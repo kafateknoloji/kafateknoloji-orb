@@ -2,6 +2,7 @@ description: >
   This command builds a .NET project located at the specified path for a given environment.
 parameters:
   project_path:
+    description: Project path for which to build
     type: string
     default: "."
   environment_name:

@@ -1,7 +1,15 @@
 #!/bin/bash
+PROJECT_PATH=$(circleci env subst "${PROJECT_PATH}")
 PACKAGE_MANAGER=$(circleci env subst "${PACKAGE_MANAGER}")
 
 echo "Installing React dependencies..."
+
+if [ -d "$PROJECT_PATH" ] && [ "$PROJECT_PATH" != "." ]; then
+    cd "$PROJECT_PATH" || { echo "Failed to change directory to $PROJECT_PATH"; exit 1; }
+else
+    echo "Project path $PROJECT_PATH does not exist."
+    exit 1
+fi
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat

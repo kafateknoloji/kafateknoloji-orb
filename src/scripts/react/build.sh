@@ -1,7 +1,19 @@
 #!/bin/bash
+PROJECT_PATH=$(circleci env subst "${PROJECT_PATH}")
 PACKAGE_MANAGER=$(circleci env subst "${PACKAGE_MANAGER}")
 
 echo "Building React application..."
+
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+ENV NEXT_TELEMETRY_DISABLED=1
+
+if [ -d "$PROJECT_PATH" ] && [ "$PROJECT_PATH" != "." ]; then
+    cd "$PROJECT_PATH" || { echo "Failed to change directory to $PROJECT_PATH"; exit 1; }
+else
+    echo "Project path $PROJECT_PATH does not exist."
+    exit 1
+fi
 
 if [ "$PACKAGE_MANAGER" == "yarn" ]; then
     echo "Using Yarn as the package manager."

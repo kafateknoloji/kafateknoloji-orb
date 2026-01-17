@@ -1,5 +1,6 @@
 description: >
   This is Docker executor for KafaTeknoloji orb. It uses cimg/base image.
+resource_class: 'medium'
 docker:
   - image: 'cimg/base:<<parameters.tag>>'
 parameters:

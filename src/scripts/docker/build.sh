@@ -5,8 +5,13 @@ NAMESPACE=$(circleci env subst "${NAMESPACE}")
 REPOSITORY_NAME=$(circleci env subst "${REPOSITORY_NAME}")
 
 echo "Building docker image..."
+
 cd "$BASE_PATH" || exit
-if [ "$BASE_PATH" != "." ]; then cp -R /home/circleci/project/app .; fi
+
+if [ "$BASE_PATH" != "." ]; then 
+    cp -R /home/circleci/project/app .; 
+fi
+
 echo "Current folder: $(pwd)"
 echo "Files in current directory: $(ls -la ./app/out)"
 

@@ -1,16 +1,24 @@
 description: >
   This command builds a React project using the specified package manager.
 parameters:
-  package_manager:
+  project_path:
+    description: Project path for which to build
     type: string
+    default: "."
+  package_manager:
+    description: The package manager to use (e.g., npm, yarn, pnpm).
+    type: string
+    default: "npm"
 steps:
   - run:
       name: Install React Dependencies
       command: <<include(scripts/react/restore.sh)>>
       environment:
         PACKAGE_MANAGER: <<parameters.package_manager>>
+        PROJECT_PATH: <<parameters.project_path>>
   - run:
       name: Build React Project
       command: <<include(scripts/react/build.sh)>>
       environment:
         PACKAGE_MANAGER: <<parameters.package_manager>>
+        PROJECT_PATH: <<parameters.project_path>>
