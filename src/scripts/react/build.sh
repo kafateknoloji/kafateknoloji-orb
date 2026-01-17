@@ -4,9 +4,12 @@ PACKAGE_MANAGER=$(circleci env subst "${PACKAGE_MANAGER}")
 
 echo "Building React application..."
 
+echo "PROJECT_PATH: $PROJECT_PATH"
+echo "PACKAGE_MANAGER: $PACKAGE_MANAGER"
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
-ENV NEXT_TELEMETRY_DISABLED=1
+export NEXT_TELEMETRY_DISABLED=1
 
 if [ -d "$PROJECT_PATH" ] && [ "$PROJECT_PATH" != "." ]; then
     cd "$PROJECT_PATH" || { echo "Failed to change directory to $PROJECT_PATH"; exit 1; }
@@ -37,3 +40,13 @@ else
     echo "Unsupported PACKAGE_MANAGER: $PACKAGE_MANAGER"
     exit 1
 fi
+
+mkdir -p app/out/public
+mkdir -p app/out/.next/static
+
+cp -R public/. app/out/public/
+cp -R .next/standalone/. app/out/
+cp -R .next/static/. app/out/.next/static/
+
+echo "Build completed. Contents of app/out directory:"
+ls -la app/out

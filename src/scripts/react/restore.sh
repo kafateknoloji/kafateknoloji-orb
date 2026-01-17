@@ -4,15 +4,15 @@ PACKAGE_MANAGER=$(circleci env subst "${PACKAGE_MANAGER}")
 
 echo "Installing React dependencies..."
 
+echo "PROJECT_PATH: $PROJECT_PATH"
+echo "PACKAGE_MANAGER: $PACKAGE_MANAGER"
+
 if [ -d "$PROJECT_PATH" ] && [ "$PROJECT_PATH" != "." ]; then
     cd "$PROJECT_PATH" || { echo "Failed to change directory to $PROJECT_PATH"; exit 1; }
 fi
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 apk add --no-cache libc6-compat
-
-# Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
 
 if [ "$PACKAGE_MANAGER" == "yarn" ]; then
     echo "Using Yarn as the package manager."
